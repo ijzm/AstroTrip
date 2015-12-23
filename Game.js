@@ -132,11 +132,6 @@ AstroTrip.Game.prototype = {
 			fuel--;
 			this.updatetext();
 			click.play();
-			
-			if(turn != 0){
-				turn--;
-			}
-			
 		} else {
 			noclick.play()
 		}
