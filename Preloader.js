@@ -12,8 +12,10 @@ AstroTrip.Preloader.prototype = {
 		//load all the required assets in the game - sprites, music, fonts,etc
 		this.load.image('playbutton', 'assets/playbutton.png');
 		this.load.image('char', 'assets/player.png');
+		this.load.image('explotion', 'assets/explotion.png');
+		
 
-//		this.load.tilemap('spawn', 'maps/spawn.json', null, Phaser.Tilemap.TILED_JSON);
+		this.load.tilemap('00', 'maps/00.json', null, Phaser.Tilemap.TILED_JSON);
 
 		this.load.image('tiles', 'assets/tiles.png');
 

@@ -1,6 +1,10 @@
 AstroTrip.Game = function (game) {};
 
 var player;
+var explotion;
+
+var layer;
+var map;
 
 AstroTrip.Game.prototype = {
 
@@ -11,31 +15,51 @@ AstroTrip.Game.prototype = {
 		this.physics.startSystem(Phaser.Physics.ARCADE);
 		player = this.add.sprite(0,0, "char");
 		player.anchor.x = 0.5;
-		
-		player.x = 100;
-		player.y = 100;
-		
+		player.anchor.y = 0.5;
 		this.physics.arcade.enable(player);
 		
+		if(level == 0){
+			player.x = 4 * 32 - 16;
+			player.y = 4 * 32 - 16;
+			map = this.add.tilemap('00');
+			map.addTilesetImage('tiles', 'tiles');
+			layer = map.createLayer('00');
+			layer.resizeWorld()
+		}
+		
+		map.setTileIndexCallback(1, this.looselevel, this);
+;
+		
+		player.bringToTop();
 	},
 
 	update: function () {
 		//Making the VCAM
 		this.camera.follow(player);
 		//Adding collitions with map
-		//this.physics.arcade.collide(player, layer);
+		this.physics.arcade.collide(player, layer);
 		
 		if (this.input.activePointer.isDown){
-			this.fire();
+			this.move();
 		}
+		
+		//console.log(this.input.worldX);
 	},
 	
-	fire: function() {
-		this.physics.arcade.moveToPointer(player, 100);
-		//player.rotation = this.physics.arcade.angleToPointer(player)+1.5;
-		
-		player.body.velocity.setTo((this.input.x - player.x), (this.input.y - player.y));
+	move: function() {
+		player.rotation = this.physics.arcade.angleToPointer(player)+1.5;		
+		player.body.velocity.setTo((this.input.worldX - player.x), (this.input.worldY - player.y));
     },
+	
+	looselevel: function(){		
+		explotion = this.add.sprite(0,0, "explotion");
+		explotion.x = player.x;
+		explotion.y = player.y;
+		
+		player.kill();
+		
+		this.time.events.add(Phaser.Timer.SECOND * 1, function(){this.state.start("MainMenu");}, this);
+	}
 
 };
 
