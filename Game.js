@@ -6,6 +6,7 @@ var explotion;
 var layer;
 var map;
 
+
 AstroTrip.Game.prototype = {
 
 	preload: function () {
@@ -28,7 +29,11 @@ AstroTrip.Game.prototype = {
 		}
 		
 		map.setTileIndexCallback(1, this.looselevel, this);
-;
+		//map.setTileIndexCallback(2, this., this);
+		//map.setTileIndexCallback(3, this., this);
+//		map.setTileIndexCallback(4, this.winlevel, this);
+		map.setTileIndexCallback(5, this.collectstar, this);
+
 		
 		player.bringToTop();
 	},
@@ -53,12 +58,20 @@ AstroTrip.Game.prototype = {
 	
 	looselevel: function(){		
 		explotion = this.add.sprite(0,0, "explotion");
+		explotion.anchor.x = 0.5;
+		explotion.anchor.y = 0.5;
 		explotion.x = player.x;
 		explotion.y = player.y;
 		
 		player.kill();
 		
-		this.time.events.add(Phaser.Timer.SECOND * 1, function(){this.state.start("MainMenu");}, this);
+		this.time.events.add(Phaser.Timer.SECOND * 1, function(){this.state.start("GameOver");}, this);
+	},
+	
+	collectstar: function(sprite, tile){
+		tile.index = 2;
+		score += 100;
+		console.log(score);
 	}
 
 };

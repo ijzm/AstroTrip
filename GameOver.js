@@ -1,9 +1,9 @@
-AstroTrip.MainMenu = function (game) {};
+AstroTrip.GameOver = function (game) {};
 
 var music;
 var playbutton;
 
-AstroTrip.MainMenu.prototype = {
+AstroTrip.GameOver.prototype = {
 
 	preload: function () {
 	},
@@ -13,7 +13,7 @@ AstroTrip.MainMenu.prototype = {
 		this.camera.y = 0;
 		this.camera.x = 0;
 		//this.game.add.sprite(0, 0, 'bgmenu');
-		playbutton = this.add.button(100,100, "playbutton", this.playTheGame,this);
+		playbutton = this.add.button(150,100, "playbutton", this.playTheGame,this);
 		playbutton.anchor.x = 0.5;
 		playbutton.anchor.y = 0.5;	
 		

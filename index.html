@@ -10,6 +10,7 @@
 	<script type="text/javascript" src="MainMenu.js"></script>
 	<script type="text/javascript" src="Game.js"></script>
 	<script type="text/javascript" src="LoadLevel.js"></script>
+	<script type="text/javascript" src="GameOver.js"></script>
 	
 
 	
@@ -27,6 +28,7 @@ window.onload = function() {
 	game.state.add('MainMenu', AstroTrip.MainMenu);
 	game.state.add('Game', AstroTrip.Game);
 	game.state.add('LoadLevel', AstroTrip.LoadLevel	);
+	game.state.add('GameOver', AstroTrip.GameOver);
 
 	game.state.start('Boot'); //starting the boot state
  
