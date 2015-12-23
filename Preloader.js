@@ -18,6 +18,7 @@ AstroTrip.Preloader.prototype = {
 		this.load.tilemap('00', 'maps/00.json', null, Phaser.Tilemap.TILED_JSON);
 		this.load.tilemap('01', 'maps/01.json', null, Phaser.Tilemap.TILED_JSON);
 		this.load.tilemap('02', 'maps/02.json', null, Phaser.Tilemap.TILED_JSON);
+		this.load.tilemap('03', 'maps/03.json', null, Phaser.Tilemap.TILED_JSON);
 
 		this.load.image('tiles', 'assets/tiles.png');
 
