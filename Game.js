@@ -43,7 +43,7 @@ AstroTrip.Game.prototype = {
 			map.addTilesetImage('tiles', 'tiles');
 			layer = map.createLayer('00');
 			layer.resizeWorld()
-			fuel = 3;
+			fuel = 5;
 			lastscore = score;
 		}
 		if(level == 1){
@@ -154,7 +154,15 @@ AstroTrip.Game.prototype = {
 	winlevel: function(){
 		level++
 		newlevel.play();
-		this.state.start("LoadLevel");
+		
+		
+		player.kill();
+		for (var i = fuel; i >= 1; --i){
+			
+			this.time.events.add(Phaser.Timer.SECOND * i/2, function(){ collectcoin.play(); score += 1000; fuel--; this.updatetext();}, this);
+			
+		}
+		this.time.events.add(Phaser.Timer.SECOND * (fuel + 1)/2, function(){this.state.start("LoadLevel");}, this);
 	},
 	
 	collectstar: function(sprite, tile){
