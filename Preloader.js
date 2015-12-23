@@ -26,6 +26,8 @@ AstroTrip.Preloader.prototype = {
 		this.load.audio('boom', 'assets/boom.mp3');
 		this.load.audio('collectcoin', 'assets/collectcoin.mp3');
 		this.load.audio('newlevel', 'assets/newlevel.mp3');
+		this.load.audio('click', 'assets/click.mp3');
+		this.load.audio('noclick', 'assets/noclick.mp3');
 		
 		this.time.advancedTiming = true;
 

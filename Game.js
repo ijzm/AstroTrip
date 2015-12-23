@@ -11,6 +11,8 @@ var fuel = 100;
 var boom;
 var newlevel;
 var collectcoin;
+var click;
+var noclick;
 
 var fueltext;
 var scoretext;
@@ -30,6 +32,8 @@ AstroTrip.Game.prototype = {
 		boom = this.add.audio('boom');
 		newlevel = this.add.audio('newlevel');
 		collectcoin = this.add.audio('collectcoin');
+		click = this.add.audio("click");
+		noclick = this.add.audio("noclick");
 		
 		if(level == 0){
 			player.x = 4 * 32 - 16;
@@ -100,6 +104,9 @@ AstroTrip.Game.prototype = {
 			player.body.velocity.setTo((this.input.worldX - player.x), (this.input.worldY - player.y));
 			fuel--;
 			this.updatetext();
+			click.play();
+		} else {
+			noclick.play()
 		}
     },
 	
