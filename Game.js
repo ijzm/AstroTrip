@@ -11,7 +11,6 @@ AstroTrip.Game.prototype = {
 		this.physics.startSystem(Phaser.Physics.ARCADE);
 		player = this.add.sprite(0,0, "char");
 		player.anchor.x = 0.5;
-
 		
 		player.x = 100;
 		player.y = 100;
