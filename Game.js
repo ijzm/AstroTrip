@@ -55,6 +55,17 @@ AstroTrip.Game.prototype = {
 			fuel = 5;
 			lastscore = score;
 		}
+		if(level == 2){
+			player.x = 4 * 32 - 16;
+			player.y = 4 * 32 - 16;
+			map = this.add.tilemap('02');
+			map.addTilesetImage('tiles', 'tiles');
+			layer = map.createLayer('02');
+			layer.resizeWorld()
+			fuel = 1;
+			lastscore = score;
+		}
+		
 		
 		fueltext = this.add.text(0,0, "Fuel: " + fuel, {
         	font: "60px Arial",
@@ -78,6 +89,7 @@ AstroTrip.Game.prototype = {
 		//map.setTileIndexCallback(3, this., this);
 		map.setTileIndexCallback(4, this.winlevel, this);
 		map.setTileIndexCallback(5, this.collectstar, this);
+		map.setTileIndexCallback(6, this.collecfuel, this);
 
 		
 		player.bringToTop();
@@ -133,6 +145,13 @@ AstroTrip.Game.prototype = {
 	collectstar: function(sprite, tile){
 		tile.index = 2;
 		score += 100;
+		collectcoin.play();
+		this.updatetext();
+	},
+	
+	collecfuel: function(sprite, tile){
+		tile.index = 2;
+		fuel++;
 		collectcoin.play();
 		this.updatetext();
 	},
