@@ -6,6 +6,9 @@ var explotion;
 var layer;
 var map;
 
+var fuel = 100;
+
+
 
 AstroTrip.Game.prototype = {
 
@@ -26,6 +29,8 @@ AstroTrip.Game.prototype = {
 			map.addTilesetImage('tiles', 'tiles');
 			layer = map.createLayer('00');
 			layer.resizeWorld()
+			fuel = 3;
+			lastscore = score;
 		}
 		if(level == 1){
 			player.x = 4 * 32 - 16;
@@ -34,6 +39,8 @@ AstroTrip.Game.prototype = {
 			map.addTilesetImage('tiles', 'tiles');
 			layer = map.createLayer('01');
 			layer.resizeWorld()
+			fuel = 5;
+			lastscore = score;
 		}
 		
 		map.setTileIndexCallback(1, this.looselevel, this);
@@ -52,16 +59,22 @@ AstroTrip.Game.prototype = {
 		//Adding collitions with map
 		this.physics.arcade.collide(player, layer);
 		
-		if (this.input.activePointer.isDown){
+		/*if (this.input.activePointer.isDown){
 			this.move();
-		}
+		}*/
+		
+		this.input.onTap.add(this.move, this);
 		
 		//console.log(this.input.worldX);
 	},
 	
 	move: function() {
-		player.rotation = this.physics.arcade.angleToPointer(player)+1.5;		
-		player.body.velocity.setTo((this.input.worldX - player.x), (this.input.worldY - player.y));
+		if(fuel >= 1){
+			player.rotation = this.physics.arcade.angleToPointer(player)+1.5;		
+			player.body.velocity.setTo((this.input.worldX - player.x), (this.input.worldY - player.y));
+			fuel--;
+			console.log(fuel);
+		}
     },
 	
 	looselevel: function(){		

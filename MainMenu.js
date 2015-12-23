@@ -25,7 +25,7 @@ AstroTrip.MainMenu.prototype = {
 	},
 		playTheGame: function(){
 			console.log("PLAY");
-			this.state.start("Game");
+			this.state.start("LoadLevel");
 			music.stop();
 			console.log("desktop:" + desktop);
 			console.log("level:" + level);

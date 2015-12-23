@@ -19,6 +19,7 @@ AstroTrip.GameOver.prototype = {
 		
 		music = this.add.audio('menumusic');
 		music.loopFull();
+		score = lastscore;
 	},
 
 		update: function () {
