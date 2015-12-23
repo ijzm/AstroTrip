@@ -12,7 +12,8 @@ var boom;
 var newlevel;
 var collectcoin;
 
-var text;
+var fueltext;
+var scoretext;
 
 AstroTrip.Game.prototype = {
 
@@ -51,13 +52,22 @@ AstroTrip.Game.prototype = {
 			lastscore = score;
 		}
 		
-		text = this.add.text(0,0, "Fuel: " + fuel, {
+		fueltext = this.add.text(0,0, "Fuel: " + fuel, {
         	font: "60px Arial",
         	fill: "#FFFFFF",
 			stroke: '#000000',
 			strokeThickness: 3,
 		});
-		text.fixedToCamera = true;
+		fueltext.fixedToCamera = true;
+		
+		scoretext = this.add.text(800,0, "Score: " + score, {
+        	font: "60px Arial",
+        	fill: "#FFFFFF",
+			stroke: '#000000',
+			strokeThickness: 3,
+		});
+		scoretext.anchor.x = 1;
+		scoretext.fixedToCamera = true;
 		
 		map.setTileIndexCallback(1, this.looselevel, this);
 		//map.setTileIndexCallback(2, this., this);
@@ -117,11 +127,12 @@ AstroTrip.Game.prototype = {
 		tile.index = 2;
 		score += 100;
 		collectcoin.play();
-		console.log(score);
+		this.updatetext();
 	},
 	
 	updatetext: function(){
-		text.setText("Fuel: " + fuel);
+		fueltext.setText("Fuel: " + fuel);
+		scoretext.setText("Score: " + score)
 	}
 
 };
