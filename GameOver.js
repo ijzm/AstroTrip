@@ -27,7 +27,6 @@ AstroTrip.GameOver.prototype = {
 			console.log("PLAY");
 			this.state.start("Game");
 			music.stop();
-			console.log("desktop:" + desktop);
 			console.log("level:" + level);
 	},
 

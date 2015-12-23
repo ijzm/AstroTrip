@@ -27,11 +27,19 @@ AstroTrip.Game.prototype = {
 			layer = map.createLayer('00');
 			layer.resizeWorld()
 		}
+		if(level == 1){
+			player.x = 4 * 32 - 16;
+			player.y = 4 * 32 - 16;
+			map = this.add.tilemap('01');
+			map.addTilesetImage('tiles', 'tiles');
+			layer = map.createLayer('01');
+			layer.resizeWorld()
+		}
 		
 		map.setTileIndexCallback(1, this.looselevel, this);
 		//map.setTileIndexCallback(2, this., this);
 		//map.setTileIndexCallback(3, this., this);
-//		map.setTileIndexCallback(4, this.winlevel, this);
+		map.setTileIndexCallback(4, this.winlevel, this);
 		map.setTileIndexCallback(5, this.collectstar, this);
 
 		
@@ -66,6 +74,11 @@ AstroTrip.Game.prototype = {
 		player.kill();
 		
 		this.time.events.add(Phaser.Timer.SECOND * 1, function(){this.state.start("GameOver");}, this);
+	},
+	
+	winlevel: function(){
+		level++
+		this.state.start("LoadLevel");
 	},
 	
 	collectstar: function(sprite, tile){
