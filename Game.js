@@ -8,7 +8,9 @@ var map;
 
 var fuel = 100;
 
-
+var boom;
+var newlevel;
+var collectcoin;
 
 AstroTrip.Game.prototype = {
 
@@ -21,6 +23,10 @@ AstroTrip.Game.prototype = {
 		player.anchor.x = 0.5;
 		player.anchor.y = 0.5;
 		this.physics.arcade.enable(player);
+		
+		boom = this.add.audio('boom');
+		newlevel = this.add.audio('newlevel');
+		collectcoin = this.add.audio('collectcoin');
 		
 		if(level == 0){
 			player.x = 4 * 32 - 16;
@@ -84,6 +90,8 @@ AstroTrip.Game.prototype = {
 		explotion.x = player.x;
 		explotion.y = player.y;
 		
+		boom.play();
+		
 		player.kill();
 		
 		this.time.events.add(Phaser.Timer.SECOND * 1, function(){this.state.start("GameOver");}, this);
@@ -91,12 +99,14 @@ AstroTrip.Game.prototype = {
 	
 	winlevel: function(){
 		level++
+		newlevel.play();
 		this.state.start("LoadLevel");
 	},
 	
 	collectstar: function(sprite, tile){
 		tile.index = 2;
 		score += 100;
+		collectcoin.play();
 		console.log(score);
 	}
 
