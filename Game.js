@@ -95,7 +95,16 @@ AstroTrip.Game.prototype = {
 		scoretext.anchor.x = 1;
 		scoretext.fixedToCamera = true;
 		
+		//walls
 		map.setTileIndexCallback(1, this.looselevel, this);
+		map.setTileIndexCallback(11, this.looselevel, this);
+		map.setTileIndexCallback(12, this.looselevel, this);
+		map.setTileIndexCallback(13, this.looselevel, this);
+		map.setTileIndexCallback(14, this.looselevel, this);
+		map.setTileIndexCallback(15, this.looselevel, this);
+		map.setTileIndexCallback(16, this.looselevel, this);
+		
+		map.setTileIndexCallback(9, this.looselevel, this);
 		//map.setTileIndexCallback(2, this., this);
 		//map.setTileIndexCallback(3, this., this);
 		map.setTileIndexCallback(4, this.winlevel, this);
@@ -103,7 +112,7 @@ AstroTrip.Game.prototype = {
 		map.setTileIndexCallback(6, this.collecfuel, this);
 		map.setTileIndexCallback(7, this.presbutton, this);
 		//
-		map.setTileIndexCallback(9, this.looselevel, this);
+		
 		//
 
 		
@@ -150,6 +159,7 @@ AstroTrip.Game.prototype = {
 		
 		this.time.events.add(Phaser.Timer.SECOND * 1, function(){this.state.start("GameOver");}, this);
 	},
+
 	
 	winlevel: function(){
 		level++
