@@ -17,6 +17,9 @@ var noclick;
 var fueltext;
 var scoretext;
 
+var lastX;
+var lastY;
+
 
 AstroTrip.Game.prototype = {
 
@@ -76,6 +79,16 @@ AstroTrip.Game.prototype = {
 			fuel = 7;
 			lastscore = score;
 		}
+		if(level == 4){
+			player.x = 4 * 32 - 16;
+			player.y = 4 * 32 - 16;
+			map = this.add.tilemap('04');
+			map.addTilesetImage('tiles', 'tiles');
+			layer = map.createLayer('04');
+			layer.resizeWorld()
+			fuel = 1;
+			lastscore = score;
+		}
 		
 		
 		fueltext = this.add.text(0,0, "Fuel: " + fuel, {
@@ -112,7 +125,10 @@ AstroTrip.Game.prototype = {
 		map.setTileIndexCallback(6, this.collecfuel, this);
 		map.setTileIndexCallback(7, this.presbutton, this);
 		//
-		
+		map.setTileIndexCallback(21, this.bounceX, this);
+		map.setTileIndexCallback(22, this.bounceY, this);
+		map.setTileIndexCallback(23, this.bounceX, this);
+		map.setTileIndexCallback(24, this.bounceY, this);
 		//
 
 		
@@ -141,6 +157,9 @@ AstroTrip.Game.prototype = {
 			fuel--;
 			this.updatetext();
 			click.play();
+			
+			lastX = player.body.velocity.x;
+			lastY = player.body.velocity.y;
 		} else {
 			noclick.play()
 		}
@@ -197,7 +216,21 @@ AstroTrip.Game.prototype = {
 	presbutton: function(sprite, tile){
 		tile.index = 8;
 		map.replace(9, 10);
-	}
+	},
+	
+	bounceY: function(){
+		player.body.velocity.setTo(-lastX,lastY);
+//TODO:		player.rotation += 1.5;
+		this.time.events.add(Phaser.Timer.SECOND * .1, function(){lastX = player.body.velocity.x;
+		lastY = player.body.velocity.y;}, this);
+			
+	},
+	
+	bounceX	: function(){
+		player.body.velocity.setTo(lastX,-lastY);
+		this.time.events.add(Phaser.Timer.SECOND * .1, function(){lastX = player.body.velocity.x;
+		lastY = player.body.velocity.y;}, this);
+	},
 
 };
 
