@@ -27,7 +27,7 @@ AstroTrip.Boot.prototype = {
 		} else {
 			desktop = 0;
 			// aspect ratio with letterboxing if needed
-			this.game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
+			this.game.scale.scaleMode = Phaser.ScaleManager.RESIZE;
 			this.game.scale.pageAlignHorizontally = true;
 			this.game.scale.pageAlignVertically = true;
 		}
