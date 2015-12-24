@@ -172,6 +172,10 @@ AstroTrip.Game.prototype = {
 		explotion.x = player.x;
 		explotion.y = player.y;
 		
+		explotion.width = 0;
+		explotion.height = 0;
+
+    	this.add.tween(explotion).to( { width: 150, height: 150, }, 2000, Phaser.Easing.Linear.None, true, 0, 1000, true);
 		boom.play();
 		
 		player.kill();
