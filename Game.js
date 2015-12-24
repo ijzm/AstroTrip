@@ -89,6 +89,16 @@ AstroTrip.Game.prototype = {
 			fuel = 1;
 			lastscore = score;
 		}
+		if(level == 5){
+			player.x = 4 * 32 - 16;
+			player.y = 4 * 32 - 16;
+			map = this.add.tilemap('05');
+			map.addTilesetImage('tiles', 'tiles');
+			layer = map.createLayer('05');
+			layer.resizeWorld()
+			fuel = 100;
+			lastscore = score;
+		}
 		
 		
 		fueltext = this.add.text(0,0, "Fuel: " + fuel, {
@@ -133,6 +143,8 @@ AstroTrip.Game.prototype = {
 
 		
 		player.bringToTop();
+		
+		canclick = true;
 	},
 
 	update: function () {
@@ -151,7 +163,7 @@ AstroTrip.Game.prototype = {
 	},
 	
 	move: function() {
-		if(fuel >= 1){
+		if(fuel >= 1 && canclick){
 			player.rotation = this.physics.arcade.angleToPointer(player)+1.5;		
 			player.body.velocity.setTo((this.input.worldX - player.x), (this.input.worldY - player.y));
 			fuel--;
@@ -166,6 +178,7 @@ AstroTrip.Game.prototype = {
     },
 	
 	looselevel: function(){		
+		canclick = false;
 		explotion = this.add.sprite(0,0, "explotion");
 		explotion.anchor.x = 0.5;
 		explotion.anchor.y = 0.5;
@@ -185,6 +198,7 @@ AstroTrip.Game.prototype = {
 
 	
 	winlevel: function(){
+		canclick = false;
 		level++
 		newlevel.play();
 		

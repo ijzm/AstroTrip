@@ -5,6 +5,7 @@ var desktop;
 var level = 0;
 var score = 0;
 var lastscore = 0;
+var canclick = false;
 
 AstroTrip.Boot = function (game) {  //declare the boot state
 	
