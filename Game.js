@@ -73,7 +73,7 @@ AstroTrip.Game.prototype = {
 			map.addTilesetImage('tiles', 'tiles');
 			layer = map.createLayer('03');
 			layer.resizeWorld()
-			fuel = 5;
+			fuel = 7;
 			lastscore = score;
 		}
 		
