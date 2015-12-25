@@ -41,8 +41,8 @@ AstroTrip.Game.prototype = {
 				
 		//parsing JSON :D
 		this.levels = JSON.parse(this.game.cache.getText("levels"));
-		player.x = this.levels.data[level].x
-		player.y = this.levels.data[level].y
+		player.x = this.levels.data[level].x *32-16;
+		player.y = this.levels.data[level].y *32-16;
 		map = this.add.tilemap(this.levels.data[level].file);
 		map.addTilesetImage('tiles', 'tiles');
 		layer = map.createLayer(this.levels.data[level].file);
