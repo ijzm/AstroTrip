@@ -162,9 +162,12 @@ AstroTrip.Game.prototype = {
 		//console.log(this.input.worldX);
 	},
 	
+	render: function(){
+	},
+	
 	move: function() {
 		if(fuel >= 1 && canclick){
-			player.rotation = this.physics.arcade.angleToPointer(player)+1.5;		
+			player.rotation = this.physics.arcade.angleToPointer(player)+1.5;	
 			player.body.velocity.setTo((this.input.worldX - player.x), (this.input.worldY - player.y));
 			fuel--;
 			this.updatetext();
@@ -241,7 +244,9 @@ AstroTrip.Game.prototype = {
 	
 	bounceY: function(){
 		player.body.velocity.setTo(-lastX,lastY);
-//TODO:		player.rotation += 1.5;
+		//player.rotation *= 2;
+		//player.angle += player.angle/2;
+		
 		this.time.events.add(Phaser.Timer.SECOND * .1, function(){lastX = player.body.velocity.x;
 		lastY = player.body.velocity.y;}, this);
 			
