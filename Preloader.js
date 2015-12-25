@@ -11,6 +11,13 @@ AstroTrip.Preloader.prototype = {
 	preload: function () {
 		//load all the required assets in the game - sprites, music, fonts,etc
 		this.load.image('playbutton', 'assets/playbutton.png');
+		this.load.image('creditsbutton', 'assets/creditsbutton.png');
+		this.load.image('levelselectorbutton', 'assets/levelselectorbutton.png');
+		this.load.image('helpbutton', 'assets/helpbutton.png');
+		this.load.image('menubutton', 'assets/menubutton.png');
+		this.load.image('retrybutton', 'assets/retrybutton.png');
+		this.load.image('logo', 'assets/logo.png');
+		
 		this.load.image('char', 'assets/player.png');
 		this.load.image('explotion', 'assets/explotion.png');
 		this.load.image('bg', 'assets/bg.png');
