@@ -217,6 +217,7 @@ AstroTrip.Game.prototype = {
 		score += 100;
 		collectcoin.play();
 		this.updatetext();
+		layer.dirty = true;
 	},
 	
 	collecfuel: function(sprite, tile){
@@ -224,6 +225,7 @@ AstroTrip.Game.prototype = {
 		fuel++;
 		collectcoin.play();
 		this.updatetext();
+		layer.dirty = true;
 	},
 	
 	updatetext: function(){
@@ -234,6 +236,7 @@ AstroTrip.Game.prototype = {
 	presbutton: function(sprite, tile){
 		tile.index = 8;
 		map.replace(9, 10);
+		layer.dirty = true;
 	},
 	
 	bounceY: function(){
