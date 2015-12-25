@@ -47,7 +47,6 @@ AstroTrip.Game.prototype = {
 			layer = map.createLayer('00');
 			layer.resizeWorld()
 			fuel = 5;
-			lastscore = score;
 		}
 		if(level == 1){
 			player.x = 4 * 32 - 16;
@@ -57,7 +56,6 @@ AstroTrip.Game.prototype = {
 			layer = map.createLayer('01');
 			layer.resizeWorld()
 			fuel = 5;
-			lastscore = score;
 		}
 		if(level == 2){
 			player.x = 4 * 32 - 16;
@@ -67,7 +65,6 @@ AstroTrip.Game.prototype = {
 			layer = map.createLayer('02');
 			layer.resizeWorld()
 			fuel = 1;
-			lastscore = score;
 		}
 		if(level == 3){
 			player.x = 4 * 32 - 16;
@@ -77,7 +74,6 @@ AstroTrip.Game.prototype = {
 			layer = map.createLayer('03');
 			layer.resizeWorld()
 			fuel = 7;
-			lastscore = score;
 		}
 		if(level == 4){
 			player.x = 4 * 32 - 16;
@@ -87,7 +83,6 @@ AstroTrip.Game.prototype = {
 			layer = map.createLayer('04');
 			layer.resizeWorld()
 			fuel = 1;
-			lastscore = score;
 		}
 		if(level == 5){
 			player.x = 4 * 32 - 16;
@@ -97,7 +92,6 @@ AstroTrip.Game.prototype = {
 			layer = map.createLayer('05');
 			layer.resizeWorld()
 			fuel = 100;
-			lastscore = score;
 		}
 		
 		

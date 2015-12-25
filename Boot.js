@@ -10,8 +10,9 @@ var level;
 
 if(! localStorage.getItem('myItemKey')){
 	level = 0;
+	localStorage.setItem('myItemKey', level.toString());
 } else {
-	level = localStorage.getItem('myItemKey')
+	level = localStorage.getItem('myItemKey');
 }
 AstroTrip.Boot = function (game) {  //declare the boot state
 	

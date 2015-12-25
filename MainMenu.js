@@ -13,6 +13,7 @@ AstroTrip.MainMenu.prototype = {
 	},
 
 	create: function () {	
+		level = localStorage.getItem('myItemKey');
 		this.game.add.sprite(0, 0, 'bg');
 		
 		this.game.add.sprite(20, 20, 'logo');

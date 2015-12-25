@@ -70,6 +70,8 @@ AstroTrip.LevelSelect.prototype = {
 				level = final;
 				console.log(final)
 				this.state.start('LoadLevel')
+				lastscore = 0;
+				score = 0;
 			}
 	},
 	
