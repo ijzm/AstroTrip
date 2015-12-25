@@ -38,62 +38,16 @@ AstroTrip.Game.prototype = {
 		collectcoin = this.add.audio('collectcoin');
 		click = this.add.audio("click");
 		noclick = this.add.audio("noclick");
-		
-		if(level == 0){
-			player.x = 4 * 32 - 16;
-			player.y = 4 * 32 - 16;
-			map = this.add.tilemap('00');
-			map.addTilesetImage('tiles', 'tiles');
-			layer = map.createLayer('00');
-			layer.resizeWorld()
-			fuel = 5;
-		}
-		if(level == 1){
-			player.x = 4 * 32 - 16;
-			player.y = 4 * 32 - 16;
-			map = this.add.tilemap('01');
-			map.addTilesetImage('tiles', 'tiles');
-			layer = map.createLayer('01');
-			layer.resizeWorld()
-			fuel = 5;
-		}
-		if(level == 2){
-			player.x = 4 * 32 - 16;
-			player.y = 4 * 32 - 16;
-			map = this.add.tilemap('02');
-			map.addTilesetImage('tiles', 'tiles');
-			layer = map.createLayer('02');
-			layer.resizeWorld()
-			fuel = 1;
-		}
-		if(level == 3){
-			player.x = 4 * 32 - 16;
-			player.y = 4 * 32 - 16;
-			map = this.add.tilemap('03');
-			map.addTilesetImage('tiles', 'tiles');
-			layer = map.createLayer('03');
-			layer.resizeWorld()
-			fuel = 7;
-		}
-		if(level == 4){
-			player.x = 4 * 32 - 16;
-			player.y = 4 * 32 - 16;
-			map = this.add.tilemap('04');
-			map.addTilesetImage('tiles', 'tiles');
-			layer = map.createLayer('04');
-			layer.resizeWorld()
-			fuel = 1;
-		}
-		if(level == 5){
-			player.x = 4 * 32 - 16;
-			player.y = 4 * 32 - 16;
-			map = this.add.tilemap('05');
-			map.addTilesetImage('tiles', 'tiles');
-			layer = map.createLayer('05');
-			layer.resizeWorld()
-			fuel = 100;
-		}
-		
+				
+		//parsing JSON :D
+		this.levels = JSON.parse(this.game.cache.getText("levels"));
+		player.x = this.levels.data[level].x
+		player.y = this.levels.data[level].y
+		map = this.add.tilemap(this.levels.data[level].file);
+		map.addTilesetImage('tiles', 'tiles');
+		layer = map.createLayer(this.levels.data[level].file);
+		layer.resizeWorld()
+		fuel = this.levels.data[level].fuel;
 		
 		fueltext = this.add.text(0,0, "Fuel: " + fuel, {
         	font: "60px Arial",
