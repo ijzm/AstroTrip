@@ -204,7 +204,11 @@ AstroTrip.Game.prototype = {
 		canclick = false;
 		level++
 		newlevel.play();
-		
+		if(localStorage.getItem('myItemKey') >= level){
+			
+		} else {
+			localStorage.setItem('myItemKey', level.toString());
+		}		
 		
 		player.kill();
 		for (var i = fuel; i >= 1; --i){

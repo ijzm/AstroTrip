@@ -54,7 +54,7 @@ AstroTrip.MainMenu.prototype = {
 	levelselect: function(){
 		music.stop();
 		console.log("levelselect");
-		//this.state.start("LevelSelect");
+		this.state.start("LevelSelect");
 	},
 	help: function(){
 		music.stop();
