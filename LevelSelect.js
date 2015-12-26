@@ -27,17 +27,25 @@ AstroTrip.LevelSelect.prototype = {
 				ylevel += 64;
 				xlevel += (64*12);
 			}
-			button = this.game.add.sprite(i*64+20 - xlevel,ylevel, "button");
-			button.inputEnabled = true;
-			button.events.onInputDown.add(function(){this.selectlevel(this.input.x,this.input.y)}, this);
 			
-			buttonlabel =this.add.text(i*64+52 - xlevel,ylevel, i+1, {
+			if(i > localStorage.getItem('myItemKey')){
+				button = this.game.add.sprite(i*64+20 - xlevel,ylevel, "buttonlocked");
+				button.inputEnabled = true;
+				button.events.onInputDown.add(function(){this.selectlevel(this.input.x,this.input.y)}, this);
+			} else {
+				button = this.game.add.sprite(i*64+20 - xlevel,ylevel, "button");
+				button.inputEnabled = true;
+				button.events.onInputDown.add(function(){this.selectlevel(this.input.x,this.input.y)}, this);
+				buttonlabel = this.add.text(i*64+52 - xlevel,ylevel, i+1, {
 				font: "50px Arial",
 				fill: "#FFFFFF",
 				stroke: '#000000',
 				strokeThickness: 3,
 		});
 			buttonlabel.anchor.x = 0.5;
+			}
+			
+
 		}
 
 

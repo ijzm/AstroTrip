@@ -17,6 +17,7 @@ AstroTrip.Preloader.prototype = {
 		this.load.image('menubutton', 'assets/menubutton.png');
 		this.load.image('retrybutton', 'assets/retrybutton.png');
 		this.load.image('button', 'assets/button.png');
+		this.load.image('buttonlocked', 'assets/buttonlocked.png');
 		this.load.image('logo', 'assets/logo.png');
 		
 		this.load.image('char', 'assets/player.png');
