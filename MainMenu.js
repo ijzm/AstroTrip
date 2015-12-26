@@ -5,7 +5,9 @@ var playbutton;
 var levelselectorbutton;
 var helpbutton;
 var creditsbutton;
-
+var menubutton;
+var credits;
+var help;
 
 AstroTrip.MainMenu.prototype = {
 
@@ -25,20 +27,30 @@ AstroTrip.MainMenu.prototype = {
 		playbutton.anchor.x = 1;
 		playbutton.anchor.y = 1;	
 		
-		playbutton = this.add.button(620,350, "levelselectorbutton", this.levelselect,this);
-		playbutton.anchor.x = 1;
-		playbutton.anchor.y = 1;	
+		levelselectorbutton = this.add.button(620,350, "levelselectorbutton", this.levelselect,this);
+		levelselectorbutton.anchor.x = 1;
+		levelselectorbutton.anchor.y = 1;	
 		
-		playbutton = this.add.button(780,450, "helpbutton", this.help,this);
-		playbutton.anchor.x = 1;
-		playbutton.anchor.y = 1;	
+		helpbutton = this.add.button(780,450, "helpbutton", this.help,this);
+		helpbutton.anchor.x = 1;
+		helpbutton.anchor.y = 1;	
 		
-		playbutton = this.add.button(780,550, "creditsbutton", this.credits,this);
-		playbutton.anchor.x = 1;
-		playbutton.anchor.y = 1;	
+		creditsbutton = this.add.button(780,550, "creditsbutton", this.credits,this);
+		creditsbutton.anchor.x = 1;
+		creditsbutton.anchor.y = 1;
+		
+		credits = this.game.add.sprite(0, 0, 'credits');
+		credits.alpha = 0
+		
+		help = this.game.add.sprite(0, 0, 'help');
+		help.alpha = 0
+		
+		menubutton = this.add.button(20,520, "menubutton", this.mainmenu,this);
+		menubutton.alpha = 0;
 		
 		music = this.add.audio('menumusic');
 		music.loopFull();
+		
 		
 	},
 
@@ -60,12 +72,20 @@ AstroTrip.MainMenu.prototype = {
 	help: function(){
 		music.stop();
 		console.log("help");
-		//this.state.start("help");
+		help.alpha = 1;
+		menubutton.alpha = 1;
 	},
 	credits: function(){
 		music.stop();
 		console.log("credits");
-		//this.state.start("credits");
+		menubutton.alpha = 1;
+		credits.alpha = 1;
+	},	
+	mainmenu: function(){
+		music.loopFull();
+		menubutton.alpha = 0;
+		credits.alpha = 0;
+		help.alpha = 0;
 	},
 
 };
