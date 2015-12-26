@@ -1,0 +1,43 @@
+Sounds:
+[ ]Create better sounds:
+[ ]Winlevel
+[ ]Looselevel
+[ ]Crash
+[ ]Bounce
+[ ]PickupCoin
+[ ]PickupFUel
+
+Music:
+[ ]Create Ingame Music
+[ ]Change Menu Music
+
+Levels:
+[ ]Create levels 1-36
+
+Spriting:
+[ ]Make Better Background
+[ ]Make in-game background
+[ ]Make a logo
+[X]Finish BlueWall disabled Tile
+
+Fonts:
+[ ]Find or make a font for the game
+[ ]Implement it on the buttons
+
+Credits:
+[ ]Make Credits
+
+Help:
+[ ]Make Help
+[ ]Probably some animations for how to play
+
+Scores:
+[ ]Make Scores maybe?
+
+Monetization:
+[ ]Decide between monetization options:
+FGL
+Yahoo Games
+
+Programming:
+[ ]Make the spaceship turn when bouncing?
