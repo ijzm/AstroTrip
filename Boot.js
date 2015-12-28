@@ -1,6 +1,7 @@
 var AstroTrip = {}; //declare the object that will hold all game states
 var clicks = 0;     // basic global variables
 var playmusic = true;  //global toggle to control music play across states
+var playsound = true;
 var desktop;
 
 var score = 0;

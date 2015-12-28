@@ -20,6 +20,7 @@ var scoretext;
 var lastX;
 var lastY;
 
+var soundbutton;
 
 AstroTrip.Game.prototype = {
 
@@ -65,6 +66,12 @@ AstroTrip.Game.prototype = {
 		});
 		scoretext.anchor.x = 1;
 		scoretext.fixedToCamera = true;
+		
+		soundbutton = this.add.button(800,600,"soundbutton",this.togglesound,this)
+		soundbutton.anchor.x = 1;
+		soundbutton.anchor.y = 1;
+		soundbutton.fixedToCamera = true;
+		soundbutton.bringToTop();
 		
 		//walls
 		map.setTileIndexCallback(1, this.looselevel, this);
@@ -119,12 +126,17 @@ AstroTrip.Game.prototype = {
 			player.body.velocity.setTo((this.input.worldX - player.x), (this.input.worldY - player.y));
 			fuel--;
 			this.updatetext();
-			click.play();
+			if(playsound){
+				click.play();
+			}
+			
 			
 			lastX = player.body.velocity.x;
 			lastY = player.body.velocity.y;
 		} else {
-			noclick.play()
+			if(playsound){
+				noclick.play();
+			}
 		}
     },
 	
@@ -140,7 +152,9 @@ AstroTrip.Game.prototype = {
 		explotion.height = 0;
 
     	this.add.tween(explotion).to( { width: 150, height: 150, }, 2000, Phaser.Easing.Linear.None, true, 0, 1000, true);
-		boom.play();
+		if(playsound){
+			boom.play();
+		}
 		
 		player.kill();
 		
@@ -170,17 +184,21 @@ AstroTrip.Game.prototype = {
 	collectstar: function(sprite, tile){
 		tile.index = 2;
 		score += 100;
-		collectcoin.play();
 		this.updatetext();
 		layer.dirty = true;
+		if(playsound){
+			collectcoin.play();
+		}
 	},
 	
 	collecfuel: function(sprite, tile){
 		tile.index = 2;
 		fuel++;
-		collectcoin.play();
 		this.updatetext();
 		layer.dirty = true;
+		if(playsound){
+			collectcoin.play();
+		}
 	},
 	
 	updatetext: function(){
@@ -204,10 +222,17 @@ AstroTrip.Game.prototype = {
 			
 	},
 	
-	bounceX	: function(){
+	bounceX: function(){
 		player.body.velocity.setTo(lastX,-lastY);
 		this.time.events.add(Phaser.Timer.SECOND * .1, function(){lastX = player.body.velocity.x;
 		lastY = player.body.velocity.y;}, this);
+	},
+	togglesound: function(){
+		if(playsound){
+			playsound = false;
+		} else if(playsound === false){
+			playsound = true;
+		}
 	},
 
 };
