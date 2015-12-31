@@ -46,30 +46,33 @@ AstroTrip.Game.prototype = {
 		player.y = this.levels.data[level].y *32-16;
 		map = this.add.tilemap(this.levels.data[level].file);
 		map.addTilesetImage('tiles', 'tiles');
-		layer = map.createLayer(this.levels.data[level].file);
+		layer = map.createLayer("layer");
 		layer.resizeWorld()
 		fuel = this.levels.data[level].fuel;
 		
-		fueltext = this.add.text(0,0, "Fuel: " + fuel, {
+		fueltext = this.add.text(0,600, "Fuel: " + fuel, {
         	font: "60px Arial",
         	fill: "#FFFFFF",
 			stroke: '#000000',
 			strokeThickness: 3,
 		});
 		fueltext.fixedToCamera = true;
+		fueltext.anchor.y = 1;
 		
-		scoretext = this.add.text(800,0, "Score: " + score, {
+		scoretext = this.add.text(800,600, "Score: " + score, {
         	font: "60px Arial",
         	fill: "#FFFFFF",
 			stroke: '#000000',
 			strokeThickness: 3,
 		});
 		scoretext.anchor.x = 1;
+		scoretext.anchor.y = 1;
 		scoretext.fixedToCamera = true;
 		
-		soundbutton = this.add.button(800,600,"soundbutton",this.togglesound,this)
+		
+		soundbutton = this.add.button(800,0,"soundbutton",this.togglesound,this)
 		soundbutton.anchor.x = 1;
-		soundbutton.anchor.y = 1;
+		soundbutton.anchor.y = 0;
 		soundbutton.fixedToCamera = true;
 		soundbutton.bringToTop();
 		
@@ -122,12 +125,14 @@ AstroTrip.Game.prototype = {
 	
 	move: function() {
 		if(fuel >= 1 && canclick){
-			player.rotation = this.physics.arcade.angleToPointer(player)+1.5;	
-			player.body.velocity.setTo((this.input.worldX - player.x), (this.input.worldY - player.y));
-			fuel--;
-			this.updatetext();
-			if(playsound){
-				click.play();
+			if(this.input.y > 16){
+				player.rotation = this.physics.arcade.angleToPointer(player)+1.5;	
+				player.body.velocity.setTo((this.input.worldX - player.x), (this.input.worldY - player.y));
+				fuel--;
+				this.updatetext();
+				if(playsound){
+					click.play();
+				}
 			}
 			
 			

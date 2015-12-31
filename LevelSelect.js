@@ -33,7 +33,7 @@ AstroTrip.LevelSelect.prototype = {
 				button.inputEnabled = true;
 				button.events.onInputDown.add(function(){this.selectlevel(this.input.x,this.input.y)}, this);
 			} else {
-				button = this.game.add.sprite(i*64+20 - xlevel,ylevel, "button");
+				button = this.game.add.button(i*64+20 - xlevel,ylevel, "button", null, this, 1,0);
 				button.inputEnabled = true;
 				button.events.onInputDown.add(function(){this.selectlevel(this.input.x,this.input.y)}, this);
 				buttonlabel = this.add.text(i*64+52 - xlevel,ylevel, i+1, {

@@ -16,7 +16,7 @@ AstroTrip.Preloader.prototype = {
 		this.load.image('helpbutton', 'assets/helpbutton.png');
 		this.load.image('menubutton', 'assets/menubutton.png');
 		this.load.image('retrybutton', 'assets/retrybutton.png');
-		this.load.image('button', 'assets/button.png');
+		this.load.spritesheet('button', 'assets/button.png',64,64);
 		this.load.image('buttonlocked', 'assets/buttonlocked.png');
 		this.load.image('soundbutton', 'assets/soundbutton.png');
 		this.load.image('logo', 'assets/logo.png');
@@ -35,6 +35,9 @@ AstroTrip.Preloader.prototype = {
 		this.load.tilemap('04', 'maps/04.json', null, Phaser.Tilemap.TILED_JSON);
 		this.load.tilemap('05', 'maps/05.json', null, Phaser.Tilemap.TILED_JSON);
 		this.load.tilemap('06', 'maps/06.json', null, Phaser.Tilemap.TILED_JSON);
+		this.load.tilemap('07', 'maps/07.json', null, Phaser.Tilemap.TILED_JSON);
+		this.load.tilemap('08', 'maps/08.json', null, Phaser.Tilemap.TILED_JSON);
+		this.load.tilemap('09', 'maps/09.json', null, Phaser.Tilemap.TILED_JSON);
 
 		this.load.image('tiles', 'assets/tiles.png');
 
