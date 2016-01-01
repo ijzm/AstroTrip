@@ -41,7 +41,7 @@ AstroTrip.LevelSelect.prototype = {
 					stroke: '#000000',
 					strokeThickness: 3,
 					//font: 'Press Start 2P',
-					fontSize: 300,
+					font: "60px Arial",
 					});
 			buttonlabel.anchor.x = 0.5;
 			}
