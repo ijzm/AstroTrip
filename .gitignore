@@ -45,3 +45,8 @@ $RECYCLE.BIN/
 Network Trash Folder
 Temporary Items
 .apdisk
+
+node_modules
+# Ignoring, unless you want to keep it under version control
+script.min.js
+*.map

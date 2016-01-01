@@ -4,26 +4,15 @@
 		AstroTrip
 	</title>
 	<link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet" type="text/css">
-	<script type="text/javascript" src="phaser.js"></script>
-	<script type="text/javascript" src="Boot.js"></script>
-	<script type="text/javascript" src="Preloader.js"></script>
-	<script type="text/javascript" src="MainMenu.js"></script>
-	<script type="text/javascript" src="Game.js"></script>
-	<script type="text/javascript" src="LoadLevel.js"></script>
-	<script type="text/javascript" src="GameOver.js"></script>
-	<script type="text/javascript" src="LevelSelect.js"></script>
-	<script type="text/javascript" src="levels.js"></script>
-	
+	<script type="text/javascript" src="/js/vendor/phaser.js"></script>
+	<script type="text/javascript" src="script.min.js"></script>
 
-	
-	
-	
 <script type="text/javascript">
- 
+
 window.onload = function() {
- //set up Phaser canvas with width = 800 and height = 600 
+ //set up Phaser canvas with width = 800 and height = 600
 	var game = new Phaser.Game(800,600, Phaser.AUTO, '');
- 
+
 //adding all the required states
 	game.state.add('Boot', AstroTrip.Boot);
 	game.state.add('Preloader', AstroTrip.Preloader);
@@ -34,8 +23,8 @@ window.onload = function() {
 	game.state.add('LevelSelect', AstroTrip.LevelSelect);
 
 	game.state.start('Boot'); //starting the boot state
- 
+
 };
- 
+
 </script>
 </html>
