@@ -20,6 +20,8 @@ var scoretext;
 var lastX;
 var lastY;
 
+
+
 var soundbutton;
 
 AstroTrip.Game.prototype = {
@@ -52,6 +54,7 @@ AstroTrip.Game.prototype = {
 		
 		fueltext = this.add.text(0,600, "Fuel: " + fuel, {
         	font: "60px Arial",
+			//font: '24px Press Start 2P',
         	fill: "#FFFFFF",
 			stroke: '#000000',
 			strokeThickness: 3,
@@ -118,6 +121,13 @@ AstroTrip.Game.prototype = {
 		this.input.onTap.add(this.move, this);
 		
 		//console.log(this.input.worldX);
+		var keys = {
+			r: this.input.keyboard.addKey(Phaser.Keyboard.R),
+		} 
+		
+		if (keys.r.isDown){
+			this.looselevel();
+		}
 	},
 	
 	render: function(){

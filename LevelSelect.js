@@ -37,11 +37,12 @@ AstroTrip.LevelSelect.prototype = {
 				button.inputEnabled = true;
 				button.events.onInputDown.add(function(){this.selectlevel(this.input.x,this.input.y)}, this);
 				buttonlabel = this.add.text(i*64+52 - xlevel,ylevel, i+1, {
-				font: "50px Arial",
-				fill: "#FFFFFF",
-				stroke: '#000000',
-				strokeThickness: 3,
-		});
+					fill: "#FFFFFF",
+					stroke: '#000000',
+					strokeThickness: 3,
+					//font: 'Press Start 2P',
+					fontSize: 300,
+					});
 			buttonlabel.anchor.x = 0.5;
 			}
 			
