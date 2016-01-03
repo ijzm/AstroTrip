@@ -125,7 +125,7 @@ AstroTrip.Game.prototype = {
 			r: this.input.keyboard.addKey(Phaser.Keyboard.R),
 		} 
 		
-		if (keys.r.isDown){
+		if (keys.r.isDown && canclick){
 			this.looselevel();
 		}
 	},
