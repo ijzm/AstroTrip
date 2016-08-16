@@ -1,50 +1,49 @@
 <!DOCTYPE HTML>
 <html>
-	<title>
-		AstroTrip
-	</title>
-	
-	<style>
-		canvas {
-			position: fixed;
-			top: 0;
-			left: 0;
-		}
-	</style>
+<title>
+	AstroTrip
+</title>
 
-	
-	<script type="text/javascript" src="phaser.js"></script>
-	<script type="text/javascript" src="Boot.js"></script>
-	<script type="text/javascript" src="Preloader.js"></script>
-	<script type="text/javascript" src="MainMenu.js"></script>
-	<script type="text/javascript" src="Game.js"></script>
-	<script type="text/javascript" src="LoadLevel.js"></script>
-	<script type="text/javascript" src="GameOver.js"></script>
-	<script type="text/javascript" src="LevelSelect.js"></script>
-	<script type="text/javascript" src="levels.json"></script>
-	
+<style>
+	canvas {
+		position: fixed;
+		top: 0;
+		left: 0;
+	}
+</style>
 
-	
-	
-	
+
+<script type="text/javascript" src="phaser.js"></script>
+<script type="text/javascript" src="Boot.js"></script>
+<script type="text/javascript" src="Preloader.js"></script>
+<script type="text/javascript" src="MainMenu.js"></script>
+<script type="text/javascript" src="Game.js"></script>
+<script type="text/javascript" src="LoadLevel.js"></script>
+<script type="text/javascript" src="GameOver.js"></script>
+<script type="text/javascript" src="LevelSelect.js"></script>
+<script type="text/javascript" src="levels.json"></script>
+
+
+
+
+
 <script type="text/javascript">
- 
-window.onload = function() {
- //set up Phaser canvas with width = 800 and height = 600 
-	var game = new Phaser.Game(800,600, Phaser.AUTO, '');
- 
-//adding all the required states
-	game.state.add('Boot', AstroTrip.Boot);
-	game.state.add('Preloader', AstroTrip.Preloader);
-	game.state.add('MainMenu', AstroTrip.MainMenu);
-	game.state.add('Game', AstroTrip.Game);
-	game.state.add('LoadLevel', AstroTrip.LoadLevel);
-	game.state.add('GameOver', AstroTrip.GameOver);
-	game.state.add('LevelSelect', AstroTrip.LevelSelect);
+	window.onload = function() {
+		//set up Phaser canvas with width = 800 and height = 600
+		var game = new Phaser.Game(800, 600, Phaser.AUTO, '');
 
-	game.state.start('Boot'); //starting the boot state
- 
-};
- 
+		//adding all the required states
+		game.state.add('Boot', AstroTrip.Boot);
+		game.state.add('Preloader', AstroTrip.Preloader);
+		game.state.add('MainMenu', AstroTrip.MainMenu);
+		game.state.add('Game', AstroTrip.Game);
+		game.state.add('LoadLevel', AstroTrip.LoadLevel);
+		game.state.add('GameOver', AstroTrip.GameOver);
+		game.state.add('LevelSelect', AstroTrip.LevelSelect);
+
+		game.state.start('Boot'); //starting the boot state
+
+	};
 </script>
+
 </html>
