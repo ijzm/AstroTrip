@@ -113,6 +113,9 @@ AstroTrip.Game.prototype = {
 		map.setTileIndexCallback(24, this.bounceY, this);
 		//
 		map.setTileIndexCallback(25, this.faster, this);
+		map.setTileIndexCallback(26, this.slower, this);
+		//
+		map.setTileIndexCallback(27, this.checkfast, this);
 
 		player.bringToTop();
 
@@ -276,6 +279,19 @@ AstroTrip.Game.prototype = {
 				lastY = player.body.velocity.y;
 				canfast = false;
 			}, this);
+		}
+	},
+
+	slower: function() {
+		//TODO :v
+	},
+
+	checkfast: function() {
+		if (Math.sqrt(Math.pow(player.body.velocity.x, 2) + Math.pow(player.body.velocity.y, 2)) > 350) {
+
+		} else {
+			console.log("tas");
+			this.looselevel();
 		}
 	},
 
