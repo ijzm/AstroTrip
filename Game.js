@@ -20,15 +20,24 @@ var scoretext;
 var lastX;
 var lastY;
 
-
+var canfast = true;
 
 var soundbutton;
+
+var spawnto;
 
 AstroTrip.Game.prototype = {
 
 	preload: function() {},
 
 	create: function() {
+		if (level == /*maxlevel*/ 1337) {
+			//TODO: Go to level 0
+		}
+		if (this.cache.checkTilemapKey(level) == false) {
+			level = 0;
+		}
+
 		this.physics.startSystem(Phaser.Physics.ARCADE);
 		player = this.add.sprite(0, 0, "char");
 		player.anchor.x = 0.5;
@@ -43,13 +52,16 @@ AstroTrip.Game.prototype = {
 
 		//parsing JSON :D
 		this.levels = JSON.parse(this.game.cache.getText("levels"));
-		player.x = this.levels.data[level].x * 32 - 16;
-		player.y = this.levels.data[level].y * 32 - 16;
 		map = this.add.tilemap(level);
 		map.addTilesetImage('tiles', 'tiles');
 		layer = map.createLayer("layer");
 		layer.resizeWorld()
 		fuel = this.levels.data[level].fuel;
+
+		//spawning tile:
+		spawnto = map.searchTileIndex(3, 0, false, layer);
+		player.x = (spawnto.x + 1) * 32 - 16;
+		player.y = (spawnto.y + 1) * 32 - 16;
 
 		fueltext = this.add.text(0, 600, "Fuel: " + fuel, {
 			font: "60px Arial",
@@ -100,7 +112,7 @@ AstroTrip.Game.prototype = {
 		map.setTileIndexCallback(23, this.bounceX, this);
 		map.setTileIndexCallback(24, this.bounceY, this);
 		//
-
+		map.setTileIndexCallback(25, this.faster, this);
 
 		player.bringToTop();
 
@@ -146,6 +158,8 @@ AstroTrip.Game.prototype = {
 
 			lastX = player.body.velocity.x;
 			lastY = player.body.velocity.y;
+
+			canfast = true;
 		} else {
 			if (playsound) {
 				noclick.play();
@@ -184,9 +198,7 @@ AstroTrip.Game.prototype = {
 		canclick = false;
 		level++
 		newlevel.play();
-		if (localStorage.getItem('myItemKey') >= level) {
-
-		} else {
+		if (localStorage.getItem('myItemKey') >= level) {} else {
 			localStorage.setItem('myItemKey', level.toString());
 		}
 
@@ -239,9 +251,6 @@ AstroTrip.Game.prototype = {
 
 	bounceY: function() {
 		player.body.velocity.setTo(-lastX, lastY);
-		//player.rotation *= 2;
-		//player.angle += player.angle/2;
-
 		this.time.events.add(Phaser.Timer.SECOND * .1, function() {
 			lastX = player.body.velocity.x;
 			lastY = player.body.velocity.y;
@@ -256,6 +265,20 @@ AstroTrip.Game.prototype = {
 			lastY = player.body.velocity.y;
 		}, this);
 	},
+
+	faster: function() {
+		if (canfast) {
+
+			player.body.velocity.setTo(lastX * 2, lastY * 2);
+
+			this.time.events.add(Phaser.Timer.SECOND * .1, function() {
+				lastX = player.body.velocity.x;
+				lastY = player.body.velocity.y;
+				canfast = false;
+			}, this);
+		}
+	},
+
 	togglesound: function() {
 		if (playsound) {
 			playsound = false;
