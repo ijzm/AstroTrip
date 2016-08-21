@@ -35,6 +35,7 @@ Monetization:
 [ ]Decide between monetization options:
 FGL
 Yahoo Games
+Steam Greenlight?
 
 Programming:
 [ ]Make the spaceship turn when bouncing?

@@ -21,6 +21,7 @@ var lastX;
 var lastY;
 
 var canfast = true;
+var canslow = true;
 
 var soundbutton;
 
@@ -163,6 +164,8 @@ AstroTrip.Game.prototype = {
 			lastY = player.body.velocity.y;
 
 			canfast = true;
+			canslow = true;
+
 		} else {
 			if (playsound) {
 				noclick.play();
@@ -267,6 +270,8 @@ AstroTrip.Game.prototype = {
 			lastX = player.body.velocity.x;
 			lastY = player.body.velocity.y;
 		}, this);
+		//TODO: Figure out rotation
+		console.log("as");
 	},
 
 	faster: function() {
@@ -283,12 +288,22 @@ AstroTrip.Game.prototype = {
 	},
 
 	slower: function() {
-		//TODO :v
+		if (canslow) {
+			player.body.velocity.setTo(lastX / 2, lastY / 2);
+
+			this.time.events.add(Phaser.Timer.SECOND * .1, function() {
+				lastX = player.body.velocity.x;
+				lastY = player.body.velocity.y;
+				canslow = false;
+			}, this);
+		}
 	},
 
-	checkfast: function() {
+	checkfast: function(sprite, tile) {
 		if (Math.sqrt(Math.pow(player.body.velocity.x, 2) + Math.pow(player.body.velocity.y, 2)) > 350) {
-
+			tile.index = 2;
+			layer.dirty = true;
+			//TODO: play sound
 		} else {
 			console.log("tas");
 			this.looselevel();
