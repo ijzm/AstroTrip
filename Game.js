@@ -32,7 +32,9 @@ var oxygen;
 var isWaterLevel = false;
 
 
-var fuellevels = [5, 5, 1, 7, 1, 5, 2, 1, 2, 1, 100];
+var fuellevels = [5, 5, 1, 7, 1, 5, 2, 1, 2, 1, 100, 100];
+
+
 
 
 AstroTrip.Game.prototype = {
@@ -151,6 +153,10 @@ AstroTrip.Game.prototype = {
 		player.bringToTop();
 
 		canclick = true;
+
+		//I can already feel the regret of doing this
+		this.bounceX();
+		this.bounceY();
 	},
 
 	update: function() {
@@ -184,6 +190,7 @@ AstroTrip.Game.prototype = {
 	move: function() {
 		if (fuel >= 1 && canclick) {
 			if (this.input.y > 16) {
+				player.height = 32;
 				player.rotation = this.physics.arcade.angleToPointer(player) + 1.5;
 				player.body.velocity.setTo((this.input.worldX - player.x), (this.input.worldY - player.y));
 				fuel--;
@@ -305,22 +312,38 @@ AstroTrip.Game.prototype = {
 	},
 
 	bounceY: function() {
-		player.body.velocity.setTo(-lastX, lastY);
-		this.time.events.add(Phaser.Timer.SECOND * .1, function() {
-			lastX = player.body.velocity.x;
-			lastY = player.body.velocity.y;
+		//this will probably add a ton of bbugs later in development ;). Im sorry future me
+		this.time.events.add(Phaser.Timer.SECOND * .001, function() {
+			test = true;
 		}, this);
+		if (test) {
+			test = false
+			player.body.velocity.setTo(-lastX, lastY);
+			this.time.events.add(Phaser.Timer.SECOND * .1, function() {
+				lastX = player.body.velocity.x;
+				lastY = player.body.velocity.y;
+			}, this);
+			player.angle *= -1;
+		}
 
 	},
 
 	bounceX: function() {
-		player.body.velocity.setTo(lastX, -lastY);
-		this.time.events.add(Phaser.Timer.SECOND * .1, function() {
-			lastX = player.body.velocity.x;
-			lastY = player.body.velocity.y;
+		//this will probably add a ton of bbugs later in development ;). Im sorry future me
+		this.time.events.add(Phaser.Timer.SECOND * .001, function() {
+			test = true;
 		}, this);
-		//TODO: Figure out rotation
-		console.log("as");
+		if (test) {
+			test = false
+			player.body.velocity.setTo(lastX, -lastY);
+			this.time.events.add(Phaser.Timer.SECOND * .1, function() {
+				lastX = player.body.velocity.x;
+				lastY = player.body.velocity.y;
+			}, this);
+			player.angle *= -1;
+			player.height *= -1;
+		}
+
 	},
 
 	faster: function() {
