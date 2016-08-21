@@ -44,6 +44,8 @@ AstroTrip.Preloader.prototype = {
 		this.load.image('credits', 'assets/credits.png');
 		this.load.image('help', 'assets/help.png');
 
+		this.load.image('oxygen', 'assets/oxygen.png');
+
 
 		this.load.tilemap('0', 'maps/0.json', null, Phaser.Tilemap.TILED_JSON);
 		this.load.tilemap('1', 'maps/1.json', null, Phaser.Tilemap.TILED_JSON);
@@ -68,7 +70,6 @@ AstroTrip.Preloader.prototype = {
 		this.load.audio('click', 'assets/click.mp3');
 		this.load.audio('noclick', 'assets/noclick.mp3');
 
-		this.load.text("levels", "levels.json");
 
 		this.time.advancedTiming = true;
 

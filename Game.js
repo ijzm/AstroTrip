@@ -27,11 +27,20 @@ var soundbutton;
 
 var spawnto;
 
+var oxygen;
+
+var isWaterLevel = false;
+
+
+var fuellevels = [5, 5, 1, 7, 1, 5, 2, 1, 2, 1, 100];
+
+
 AstroTrip.Game.prototype = {
 
 	preload: function() {},
 
 	create: function() {
+
 		if (level == /*maxlevel*/ 1337) {
 			//TODO: Go to level 0
 		}
@@ -51,13 +60,16 @@ AstroTrip.Game.prototype = {
 		click = this.add.audio("click");
 		noclick = this.add.audio("noclick");
 
-		//parsing JSON :D
-		this.levels = JSON.parse(this.game.cache.getText("levels"));
 		map = this.add.tilemap(level);
 		map.addTilesetImage('tiles', 'tiles');
 		layer = map.createLayer("layer");
 		layer.resizeWorld()
-		fuel = this.levels.data[level].fuel;
+		fuel = fuellevels[level];
+
+		//check if water
+		if (map.searchTileIndex(28, 0, false, layer) != null) {
+			isWaterLevel = true;
+		}
 
 		//spawning tile:
 		spawnto = map.searchTileIndex(3, 0, false, layer);
@@ -91,6 +103,22 @@ AstroTrip.Game.prototype = {
 		soundbutton.fixedToCamera = true;
 		soundbutton.bringToTop();
 
+		//OXYGEN STUFF
+		if (isWaterLevel) {
+			oxygen = this.add.sprite(415, 565, "oxygen");
+			oxygen.fixedToCamera = true;
+			oxygen.anchor.x = 0.5;
+			oxygen.anchor.y = 0.5;
+			oxygen.bringToTop();
+
+			this.timer = this.game.time.create(false);
+			this.timer.loop(700, function() {
+				oxygenleft--;
+
+			}, this);
+			this.timer.start();
+		}
+
 		//walls
 		map.setTileIndexCallback(1, this.looselevel, this);
 		map.setTileIndexCallback(11, this.looselevel, this);
@@ -117,6 +145,8 @@ AstroTrip.Game.prototype = {
 		map.setTileIndexCallback(26, this.slower, this);
 		//
 		map.setTileIndexCallback(27, this.checkfast, this);
+		//
+		map.setTileIndexCallback(28, this.colllectoxygen, this);
 
 		player.bringToTop();
 
@@ -124,6 +154,10 @@ AstroTrip.Game.prototype = {
 	},
 
 	update: function() {
+		if (isWaterLevel) {
+			oxygen.width = oxygenleft * 3;
+		}
+
 		//Making the VCAM
 		this.camera.follow(player);
 		//Adding collitions with map
@@ -244,6 +278,21 @@ AstroTrip.Game.prototype = {
 		}
 	},
 
+	colllectoxygen: function(sprite, tile) {
+		tile.index = 2;
+		layer.dirty = true;
+
+		if (100 - oxygenleft < 50) {
+			oxygenleft = 100;
+		} else {
+			oxygenleft += 50;
+		}
+
+
+
+		//TODO: Playsound
+	},
+
 	updatetext: function() {
 		fueltext.setText("Fuel: " + fuel);
 		scoretext.setText("Score: " + score)
@@ -305,7 +354,6 @@ AstroTrip.Game.prototype = {
 			layer.dirty = true;
 			//TODO: play sound
 		} else {
-			console.log("tas");
 			this.looselevel();
 		}
 	},

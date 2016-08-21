@@ -1,17 +1,16 @@
-AstroTrip.LoadLevel = function (game) {};
+AstroTrip.LoadLevel = function(game) {};
 
 
 AstroTrip.LoadLevel.prototype = {
 
-	preload: function () {
-	},
+	preload: function() {},
 
-	create: function () {
+	create: function() {
 		console.log("level:" + level);
 		this.state.start("Game");
 		this.game.add.sprite(0, 0, 'bg');
+		oxygenleft = 100;
 	},
 
-		update: function () {
-	},
+	update: function() {},
 };
