@@ -157,6 +157,9 @@ AstroTrip.Game.prototype = {
 		//I can already feel the regret of doing this
 		this.bounceX();
 		this.bounceY();
+		player.height = 32;
+		player.body.velocity.setTo(0, 0);
+
 	},
 
 	update: function() {
