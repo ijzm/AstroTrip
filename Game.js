@@ -34,7 +34,7 @@ var isWaterLevel = false;
 
 var fuellevels = [5, 5, 1, 7, 1, 5, 2, 1, 2, 1, 100, 100];
 
-
+var test;
 
 
 AstroTrip.Game.prototype = {
