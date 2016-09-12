@@ -160,6 +160,11 @@ AstroTrip.Game.prototype = {
 		player.height = 32;
 		player.body.velocity.setTo(0, 0);
 
+		//Asteroids STUFF
+		asteroids = this.add.group();
+		this.physics.arcade.enable(asteroids);
+		asteroids.enableBody = true;
+
 	},
 
 	update: function() {
@@ -201,6 +206,8 @@ AstroTrip.Game.prototype = {
 				if (playsound) {
 					click.play();
 				}
+				console.log("te");
+				this.createAsteroid();
 			}
 
 
@@ -390,6 +397,24 @@ AstroTrip.Game.prototype = {
 		} else if (playsound === false) {
 			playsound = true;
 		}
+	},
+
+	createAsteroid: function() {
+
+		var asteroid;
+
+		console.log("te");
+		if (Math.random() > 0.5) {
+			asteroid = asteroids.create(this.world.randomX, 0, 'asteroid');
+		} else {
+			asteroid = asteroids.create(this.world.width, this.world.randomY, 'asteroid');
+		}
+
+		asteroid.body.velocity.x = -Math.floor((Math.random() * 100) + 10);
+		asteroid.body.velocity.y = Math.floor((Math.random() * 100) + 10);
+
+		asteroids.setAll('anchor.x', 0.5);
+		asteroids.setAll('anchor.y', 0.5);
 	},
 
 };
