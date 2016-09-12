@@ -117,6 +117,10 @@ AstroTrip.Game.prototype = {
 			this.timer.loop(700, function() {
 				oxygenleft--;
 
+				//if(something){
+				this.createAsteroid();
+				//}
+
 			}, this);
 			this.timer.start();
 		}
@@ -168,6 +172,10 @@ AstroTrip.Game.prototype = {
 	},
 
 	update: function() {
+		this.game.physics.arcade.collide(player, asteroids, function() {
+			console.log("collisio");
+		});
+
 		if (isWaterLevel) {
 			oxygen.width = oxygenleft * 3;
 		}
@@ -206,8 +214,6 @@ AstroTrip.Game.prototype = {
 				if (playsound) {
 					click.play();
 				}
-				console.log("te");
-				this.createAsteroid();
 			}
 
 
@@ -402,12 +408,10 @@ AstroTrip.Game.prototype = {
 	createAsteroid: function() {
 
 		var asteroid;
-
-		console.log("te");
 		if (Math.random() > 0.5) {
-			asteroid = asteroids.create(this.world.randomX, 0, 'asteroid');
+			asteroid = asteroids.create(this.world.randomX, 0, 'char');
 		} else {
-			asteroid = asteroids.create(this.world.width, this.world.randomY, 'asteroid');
+			asteroid = asteroids.create(this.world.width, this.world.randomY, 'char');
 		}
 
 		asteroid.body.velocity.x = -Math.floor((Math.random() * 100) + 10);
