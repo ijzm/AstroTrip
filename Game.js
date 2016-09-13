@@ -34,6 +34,7 @@ var isWaterLevel = false;
 
 var fuellevels = [5, 5, 1, 7, 1, 5, 2, 1, 2, 1, 100, 100];
 
+var willdie;
 var test;
 
 
@@ -42,6 +43,9 @@ AstroTrip.Game.prototype = {
 	preload: function() {},
 
 	create: function() {
+		var bg = this.game.add.sprite(0, 0, 'bg2');
+		bg.fixedToCamera = true;
+		willdie = 0;
 
 		if (level == /*maxlevel*/ 1337) {
 			//TODO: Go to level 0
@@ -172,9 +176,13 @@ AstroTrip.Game.prototype = {
 	},
 
 	update: function() {
+
+		if (willdie == 1) {
+			this.looselevel();
+		}
 		this.game.physics.arcade.collide(player, asteroids, function() {
-			console.log("collisio");
-		});
+			willdie = 1;
+		})
 
 		if (isWaterLevel) {
 			oxygen.width = oxygenleft * 3;
@@ -231,6 +239,7 @@ AstroTrip.Game.prototype = {
 	},
 
 	looselevel: function() {
+		willdie = false;
 		canclick = false;
 		explotion = this.add.sprite(0, 0, "explotion");
 		explotion.anchor.x = 0.5;
