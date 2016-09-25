@@ -39,6 +39,7 @@ AstroTrip.Preloader.prototype = {
 		this.load.image('logo', 'assets/logo.png');
 
 		this.load.image('char', 'assets/player.png');
+		this.load.image('asteroid', 'assets/asteroid.png');
 		this.load.image('explotion', 'assets/explotion.png');
 		this.load.image('bg', 'assets/bg.png');
 		this.load.image('bg2', 'assets/bg2.png');

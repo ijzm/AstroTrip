@@ -30,6 +30,7 @@ var spawnto;
 var oxygen;
 
 var isWaterLevel = false;
+var isAsteroidLevel = false;
 
 
 var fuellevels = [5, 5, 1, 7, 1, 5, 2, 1, 2, 1, 100, 100];
@@ -72,9 +73,14 @@ AstroTrip.Game.prototype = {
 		layer.resizeWorld()
 		fuel = fuellevels[level];
 
+		isWaterLevel = false;
 		//check if water
 		if (map.searchTileIndex(28, 0, false, layer) != null) {
 			isWaterLevel = true;
+		}
+		isAsteroidLevel = false;
+		if (map.searchTileIndex(29, 0, false, layer) != null) {
+			isAsteroidLevel = true;
 		}
 
 		//spawning tile:
@@ -120,14 +126,19 @@ AstroTrip.Game.prototype = {
 			this.timer = this.game.time.create(false);
 			this.timer.loop(700, function() {
 				oxygenleft--;
-
-				//if(something){
-				this.createAsteroid();
-				//}
-
 			}, this);
 			this.timer.start();
 		}
+
+
+		this.timer2 = this.game.time.create(false);
+		this.timer2.loop(700, function() {
+			if (isAsteroidLevel) {
+				this.createAsteroid();
+			}
+		}, this);
+		this.timer2.start();
+
 
 		//walls
 		map.setTileIndexCallback(1, this.looselevel, this);
@@ -163,6 +174,7 @@ AstroTrip.Game.prototype = {
 		canclick = true;
 
 		//I can already feel the regret of doing this
+		//Its dangerous to go alone, take this: ¯\_(ツ)_/¯
 		this.bounceX();
 		this.bounceY();
 		player.height = 32;
@@ -176,6 +188,7 @@ AstroTrip.Game.prototype = {
 	},
 
 	update: function() {
+
 
 		if (willdie == 1) {
 			this.looselevel();
@@ -417,14 +430,16 @@ AstroTrip.Game.prototype = {
 	createAsteroid: function() {
 
 		var asteroid;
-		if (Math.random() > 0.5) {
-			asteroid = asteroids.create(this.world.randomX, 0, 'char');
+		/*	if (Math.random() > 0.5) {
+			asteroid = asteroids.create(this.world.randomX, 0, 'asteroid');
 		} else {
-			asteroid = asteroids.create(this.world.width, this.world.randomY, 'char');
+			asteroid = asteroids.create(this.world.width, this.world.randomY, 'asteroid');
 		}
+*/
+		asteroid = asteroids.create(this.camera.x + 850, Math.floor((Math.random() * (this.camera.y + 600)) + this.camera.y), 'asteroid');
 
 		asteroid.body.velocity.x = -Math.floor((Math.random() * 100) + 10);
-		asteroid.body.velocity.y = Math.floor((Math.random() * 100) + 10);
+		//asteroid.body.velocity.y = Math.floor((Math.random() * 100) + 10);
 
 		asteroids.setAll('anchor.x', 0.5);
 		asteroids.setAll('anchor.y', 0.5);
